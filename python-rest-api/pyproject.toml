@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "api rest python"
+version = "0.1.0"
+description = ""
+authors = ["febreno <felipesugisawa1@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.3"
+httpie = "^3.2.2"
+flask-pydantic-spec = "^0.6.0"
+tinydb = "^4.8.0"
+alembic = "^1.13.1"
+python-dotenv = "^1.0.1"
+psycopg2 = "^2.9.9"
+flask-cors = "^4.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
