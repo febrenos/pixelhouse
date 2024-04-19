@@ -11,7 +11,7 @@
 # SOBRE O PROJETO
 
 | tipo | tecnologia |
-|---|---|---|
+|---|---|
 | Front-end | React.js |
 | Back-end | Python |
 | Banco de dados | Postgres |
@@ -19,12 +19,9 @@
 <details>
 <summary>Front-end</summary>
 
-#### Start API
+#### Start
 1. npm i
 2. npm start
-
-```md
-```
 
 </details>
 
@@ -32,8 +29,9 @@
 <summary>Back-end</summary>
 
 #### Start API
-1. poetry install
-2. poetry shell
+
+1. poetry shell
+2. poetry install
 3. flask run
 
 ```md
@@ -97,7 +95,6 @@ PythonRestApi
 
 1. use uma IDE de banco de dados
 2. informe os dados e faça a coneção
-3. 
 
 | Coluna | tipo |
 |---|---|---|
