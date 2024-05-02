@@ -97,7 +97,7 @@ PythonRestApi
 2. informe os dados e faça a coneção
 
 | Coluna | tipo |
-|---|---|---|
+|---|---|
 | id | Integer, primary_key=True |
 | name | String |
 | bornIn | Date |
