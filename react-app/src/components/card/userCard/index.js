@@ -6,8 +6,7 @@ import { Delete } from '../../../assets/icons';
 import api from '../../../services/pythonApi';
 import * as Styled from './style';
 
-export function UserCard({ list, type, onEditar }) {
-  const [userList, setUserList] = useState([]);
+export function UserCard({ list, type, onEditar, onUpdateList }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState(list.name);
   const [editBornIn, setEditBornIn] = useState(list.bornIn);
@@ -16,28 +15,13 @@ export function UserCard({ list, type, onEditar }) {
   const [editReceiveSMS, setEditReceiveSMS] = useState(list.receiveSMS);
   const [editPassword, setEditPassword] = useState(list.password);
 
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  const getUser = async () => {
-    try {
-      const response = await api.get("/user");
-      const users = response.data.userList;
-      setUserList(users);
-      console.log(users);
-    } catch (error) {
-      console.error("Erro ao fazer a solicitação à API:", error);
-    }
-  }
-
   const handleEditUser = async (id, editedUser) => {
     try {
       const response = await api.put(`/user/${id}`, editedUser);
       console.log("User edited successfully:", response.data);
   
       // Atualizar a lista de usuários após a edição
-      getUser();
+      onUpdateList();
     } catch (error) {
       console.error("Erro ao editar o usuário:", error);
       // Exibir uma mensagem de erro ou lidar com o erro de outra forma
@@ -50,7 +34,7 @@ export function UserCard({ list, type, onEditar }) {
       console.log("User deleted successfully:", response.data);
   
       // Atualizar a lista de usuários após a exclusão
-      getUser();
+      onUpdateList();
     } catch (error) {
       console.error("Erro ao excluir o usuário:", error);
       // Exibir uma mensagem de erro ou lidar com o erro de outra forma

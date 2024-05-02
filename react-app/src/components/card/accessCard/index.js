@@ -6,15 +6,15 @@ import { CheckBox } from '../userCard/style';
 import { Flex } from '../../../style';
 import api from '../../../services/pythonApi';
 
-const userList = [
+const randomInputs = [
     {
-      id: 1,
-      name: 'Luana java',
-      bornIn: '2009-18-09',
-      email: 'email@gmail.com',
-      password: 'test',
-      receiveEmail:true,
-      receiveSMS: true
+        id: 1,
+        name: 'Luana java',
+        bornIn: '2009-18-09',
+        email: 'email@gmail.com',
+        password: 'test',
+        receiveEmail: true,
+        receiveSMS: true
     },
     {
         id: 2,
@@ -24,20 +24,48 @@ const userList = [
         password: 'test',
         receiveEmail: false,
         receiveSMS: false
-      },
+    },
+    {
+        id: 3,
+        name: 'Maria React',
+        bornIn: '1995-05-20',
+        email: 'maria@gmail.com',
+        password: 'password123',
+        receiveEmail: true,
+        receiveSMS: false
+    },
+    {
+        id: 4,
+        name: 'José Python',
+        bornIn: '1980-12-15',
+        email: 'jose@gmail.com',
+        password: '123456',
+        receiveEmail: false,
+        receiveSMS: true
+    },
+    {
+        id: 5,
+        name: 'Ana JavaScript',
+        bornIn: '2000-08-07',
+        email: 'ana@gmail.com',
+        password: 'abcdef',
+        receiveEmail: true,
+        receiveSMS: true
+    }
 ];
+
 
 export function AccessCard() {
     const [userList, setUserList] = useState([]);
 
     const [isRegister,setIsRegister] = useState(false)
-    const [name, setName] = useState('Julia Csharp');
-    const [bornIn, setBornIn] = useState('2002-08-24');
-    const [email, setEmail] = useState('email@gmail.com');
+    const [name, setName] = useState('');
+    const [bornIn, setBornIn] = useState('');
+    const [email, setEmail] = useState('');
     const [receiveEmail, setReceiveEmail] = useState(false);
     const [receiveSMS, setReceiveSMS] = useState(false);
-    const [password, setPassword] = useState('senha123');
-    const [confirmPassword, setConfirmPassword] = useState('senha123');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     useEffect(() => {
         getUser();
@@ -52,6 +80,18 @@ export function AccessCard() {
         } catch (error) {
           console.error("Erro ao fazer a solicitação à API:", error);
         }
+    }
+
+    const generateRandomInputs = () => {
+        let indexUser = Math.floor(Math.random() * randomInputs.length);
+        setName(`${randomInputs[indexUser].name}`);
+        console.log()
+        setBornIn(randomInputs[indexUser].bornIn);
+        setEmail(randomInputs[indexUser].email);
+        setReceiveEmail(randomInputs[indexUser].receiveEmail);
+        setReceiveSMS(randomInputs[indexUser].receiveSMS);
+        setPassword(randomInputs[indexUser].password);
+        setConfirmPassword(randomInputs[indexUser].password);
     }
 
     const RegisterUser = async () => {
@@ -104,9 +144,9 @@ export function AccessCard() {
                     <Styles.UserIcon/>
                     {isRegister &&
                         <>
-                            <Input name="name" type="email" placeholder="Email" value={name} onChange={(e) => setName(e.target.value)} />
+                            <Input name="name" type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                             <Input name="bornIn" placeholder="Data Nascimento" value={bornIn} onChange={(e) => setBornIn(e.target.value)} />
-                            <Input name="email" type="password" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <Input name="email" type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                             <Input name="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             <Input name="confirmPassword" type="password" placeholder="Conf. Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                             <Flex>
@@ -121,6 +161,7 @@ export function AccessCard() {
                                 <Flex/>
                             </Flex>
                             <Button text="Cadastrar" onClick={RegisterUser} />
+                            <Button text="Generate Inputs" onClick={generateRandomInputs} />
                         </>
                     }
                     {!isRegister &&
